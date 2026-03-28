@@ -1,0 +1,112 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of costFcn</title>
+<meta name="keywords" content="costFcn">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>costFcn </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc"> COSTFCN  Ztrátová funkce pro optimalizaci týdenních časů svozu bez
+          intervalových omezení.
+
+   [cost, p, coll, ratiofull, pcoll, amountless, amountmore] = ...
+       COSTFCN(t_collect, TT, params)
+
+   vypočítá hodnotu ztrátové funkce pro zadaný ohodnocovaný týdenní rozvrh
+   svozů t_collect, kde každý prvek představuje čas svozu ve formátu
+   weekfraction (0–1). Funkce simuluje průběh zaplnění nádoby na základě
+   vstupní časové řady a vyhodnocuje dvě hlavní kritéria:
+       • nevyužitou kapacitu (unused capacity, UC),
+       • přetečení nádoby (missed capacity / overflow, MC).
+
+   Funkce na rozdíl od COSTFCN_CONSTRAINTS neprovádí žádná intervalová
+   omezení ani reparametrizace časů svozu – optimalizátor tedy může zvolit
+   libovolnou hodnotu weekfraction v intervalu [0, 1] a ta je interpretována
+   jako platný čas svozu.
+
+   Simulace probíhá nad časovou řadou TT, kde je úroveň zaplnění aktualizována
+   podle přírůstků TT.dp. Jakmile některý z časů v t_collect spadá mezi
+   okamžiky t(i−1) a t(i), je zaznamenán svoz a úroveň zaplnění je skokově
+   nastavena podle PARAMS.LEVEL_AFTER. Tak jsou určeny úrovně zaplnění těsně
+   před svozem i celý průběh zaplnění nádoby.
+
+   UC (AMOUNTLESS) je množství volné kapacity, které zůstalo nevyužito při
+   předčasném svozu. MC (AMOUNTMORE) je množství odpadu, které se do nádoby
+   nevešlo při opožděném svozu.
+
+   Funkce porovnává vypočtené UC a MC s referenčními hodnotami
+   PARAMS.ALESSCURR a PARAMS.AMORECURR, což odpovídá UC a MC aktuálního
+   (výchozího) rozvrhu. Pokud nové hodnoty nejsou menší než referenční,
+   přidává se penalizace. Optimalizace je tak směrována ke zlepšení obou
+   kritérií současně.
+
+   Výsledná cena je dána kombinací:
+       • w * UC + (1 - w) * MC
+       • penalizačních členů, které zajišťují UC < ALESSCURR a MC < AMORECURR
+
+   Funkce je určena pro použití při optimalizaci rozvrhů pomocí metod jako
+   PATTERNSEARCH, PARTICLESWARM a dalších algoritmů bez derivací.
+
+   Vstupní parametry:
+       t_collect  - double, vektor časů svozu ve formátu weekfraction (S×1).
+                    Nejsou uplatněna žádná intervalová omezení.
+
+       TT         - timetable typu Nx2 s časovou řadou zaplnění:
+                        • TT.Time : datetime, časové značky
+                        • TT.p    : double, vzorky stavu zaplnění (%)
+                        • TT.dp   : double, odhad množství uloženého odpadu
+                                     mezi vzorky (výstup estimate_disposal.m)
+
+       params     - struktura obsahující pomocná a referenční data:
+                        • timec       : datetime, detekované časy svozu
+                        • level_after : double, úroveň zaplnění po svozu
+                                         pro simulační model
+                        • alesscurr   : double, referenční UC aktuálního rozvrhu
+                        • amorecurr   : double, referenční MC aktuálního rozvrhu
+
+   Výstupní parametry:
+       cost       - double, výsledná hodnota ztrátové funkce
+
+       p          - double(N×1), simulovaná úroveň zaplnění nádoby
+
+       coll       - logical(N×1), příznaky detekovaných okamžiků svozu
+
+       ratiofull  - double, podíl času, kdy byla nádoba naplněna na 100 %
+
+       pcoll      - double, úrovně zaplnění těsně před svozy
+
+       amountless - double, celková nevyužitá kapacita (UC)
+
+       amountmore - double, celkové přetečení nádoby (MC)
+
+   Viz také:
+       COSTFCN_CONSTRAINTS, PATTERNSEARCH, PARTICLESWARM, ESTIMATE_DISPOSAL</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="weekratio.html" class="code" title="Go To Function">weekratio</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

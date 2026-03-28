@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- $Date: 2025-12-10 20:16:10 $ -->
+
+<toc version="2.0">
+
+<tocitem target="Welcome_to_waste_code.html" image="$toolbox/matlab/icons/book_mat.gif">odpady
+   <tocitem target="analyse_signal.html">analyse_signal</tocitem>
+   <tocitem target="analyse_signal_bsklo.html">analyse_signal_bsklo</tocitem>
+   <tocitem target="anomaly_detection_arcoll.html">anomaly_detection_arcoll</tocitem>
+   <tocitem target="anomaly_detection_arx.html">anomaly_detection_arx</tocitem>
+   <tocitem target="anomaly_detection_autoencoder.html">anomaly_detection_autoencoder</tocitem>
+   <tocitem target="anomaly_detection_heuristic.html">anomaly_detection_heuristic</tocitem>
+   <tocitem target="anomaly_detection_heuristic_bsklo.html">anomaly_detection_heuristic_bsklo</tocitem>
+   <tocitem target="anomaly_detection_heuristic_old.html">anomaly_detection_heuristic_old</tocitem>
+   <tocitem target="anomaly_detection_nsigma.html">anomaly_detection_nsigma</tocitem>
+   <tocitem target="api_read_containers.html">api_read_containers</tocitem>
+   <tocitem target="api_read_measurements.html">api_read_measurements</tocitem>
+   <tocitem target="build_string.html">build_string</tocitem>
+   <tocitem target="constraint_decoding.html">constraint_decoding</tocitem>
+   <tocitem target="constraint_encoding.html">constraint_encoding</tocitem>
+   <tocitem target="costFcn.html">costFcn</tocitem>
+   <tocitem target="costFcn_constraints.html">costFcn_constraints</tocitem>
+   <tocitem target="costFcn_periodical.html">costFcn_periodical</tocitem>
+   <tocitem target="create_documentation_PDF.html">create_documentation_PDF</tocitem>
+   <tocitem target="demo0_nsigma.html">demo0_nsigma</tocitem>
+   <tocitem target="demo10_detect_collection.html">demo10_detect_collection</tocitem>
+   <tocitem target="demo10_detect_collection_periodical.html">demo10_detect_collection_periodical</tocitem>
+   <tocitem target="demo12_changepoint.html">demo12_changepoint</tocitem>
+   <tocitem target="demo12_changepoint_periodical.html">demo12_changepoint_periodical</tocitem>
+   <tocitem target="demo1_retime.html">demo1_retime</tocitem>
+   <tocitem target="demo2_optimization.html">demo2_optimization</tocitem>
+   <tocitem target="demo3_anomalydetection.html">demo3_anomalydetection</tocitem>
+   <tocitem target="demo4_autoencoder.html">demo4_autoencoder</tocitem>
+   <tocitem target="demo5_optimization_ver2.html">demo5_optimization_ver2</tocitem>
+   <tocitem target="demo6_disposal.html">demo6_disposal</tocitem>
+   <tocitem target="demo7_forecast.html">demo7_forecast</tocitem>
+   <tocitem target="demo8_weekendcollections.html">demo8_weekendcollections</tocitem>
+   <tocitem target="demo_13_all.html">demo_13_all</tocitem>
+   <tocitem target="demo_analyse_all.html">demo_analyse_all</tocitem>
+   <tocitem target="demo_analyse_all_excelreports.html">demo_analyse_all_excelreports</tocitem>
+   <tocitem target="demo_autoencoder.html">demo_autoencoder</tocitem>
+   <tocitem target="demo_collections_roc.html">demo_collections_roc</tocitem>
+   <tocitem target="demo_crossvalidate_collection_supervised.html">demo_crossvalidate_collection_supervised</tocitem>
+   <tocitem target="demo_divide_labeled_data.html">demo_divide_labeled_data</tocitem>
+   <tocitem target="demo_excel_obrazek.html">demo_excel_obrazek</tocitem>
+   <tocitem target="demo_excel_obrazek_linky.html">demo_excel_obrazek_linky</tocitem>
+   <tocitem target="demo_shadedErrorBar.html">demo_shadedErrorBar</tocitem>
+   <tocitem target="demo_train_collection_detector_anom.html">demo_train_collection_detector_anom</tocitem>
+   <tocitem target="demo_train_collection_supervised.html">demo_train_collection_supervised</tocitem>
+   <tocitem target="demo_train_collection_supervised_2.html">demo_train_collection_supervised_2</tocitem>
+   <tocitem target="demo_train_collection_thresholding.html">demo_train_collection_thresholding</tocitem>
+   <tocitem target="demo_tune_classifier.html">demo_tune_classifier</tocitem>
+   <tocitem target="demo_tune_ocsvm.html">demo_tune_ocsvm</tocitem>
+   <tocitem target="detect_changepoints.html">detect_changepoints</tocitem>
+   <tocitem target="detect_changepoints_old.html">detect_changepoints_old</tocitem>
+   <tocitem target="detect_changepoints_periodical.html">detect_changepoints_periodical</tocitem>
+   <tocitem target="detect_collection_schedule.html">detect_collection_schedule</tocitem>
+   <tocitem target="detect_collections_iforest.html">detect_collections_iforest</tocitem>
+   <tocitem target="detect_collections_ocsvm.html">detect_collections_ocsvm</tocitem>
+   <tocitem target="detect_collections_smazat.html">detect_collections_smazat</tocitem>
+   <tocitem target="detect_collections_supervised.html">detect_collections_supervised</tocitem>
+   <tocitem target="detect_collections_supervised_bsklo.html">detect_collections_supervised_bsklo</tocitem>
+   <tocitem target="detect_collections_thresholding.html">detect_collections_thresholding</tocitem>
+   <tocitem target="detect_missing_collection.html">detect_missing_collection</tocitem>
+   <tocitem target="detect_missing_collection_periodical.html">detect_missing_collection_periodical</tocitem>
+   <tocitem target="detectIncreasedEvents.html">detectIncreasedEvents</tocitem>
+   <tocitem target="estimate_disposal.html">estimate_disposal</tocitem>
+   <tocitem target="expected_collection_times.html">expected_collection_times</tocitem>
+   <tocitem target="extract_features_collection_bsklo.html">extract_features_collection_bsklo</tocitem>
+   <tocitem target="extract_features_collection_bsklo_nosched.html">extract_features_collection_bsklo_nosched</tocitem>
+   <tocitem target="extract_features_collection_papir.html">extract_features_collection_papir</tocitem>
+   <tocitem target="extract_features_collection_papir_nosched.html">extract_features_collection_papir_nosched</tocitem>
+   <tocitem target="fill_nans.html">fill_nans</tocitem>
+   <tocitem target="forecast_arx.html">forecast_arx</tocitem>
+   <tocitem target="forecast_arx_idtool.html">forecast_arx_idtool</tocitem>
+   <tocitem target="forecast_mean.html">forecast_mean</tocitem>
+   <tocitem target="generate_doc.html">generate_doc</tocitem>
+   <tocitem target="mean_weekly_profile.html">mean_weekly_profile</tocitem>
+   <tocitem target="optimize_collections.html">optimize_collections</tocitem>
+   <tocitem target="optimize_collections_constraints.html">optimize_collections_constraints</tocitem>
+   <tocitem target="optimize_collections_constraints_old.html">optimize_collections_constraints_old</tocitem>
+   <tocitem target="optimize_collections_periodical.html">optimize_collections_periodical</tocitem>
+   <tocitem target="prepare_app_functions.html">prepare_app_functions</tocitem>
+   <tocitem target="prepare_data_bsklo.html">prepare_data_bsklo</tocitem>
+   <tocitem target="prepare_data_papir.html">prepare_data_papir</tocitem>
+   <tocitem target="repair_labels.html">repair_labels</tocitem>
+   <tocitem target="shadedErrorBar.html">shadedErrorBar</tocitem>
+   <tocitem target="test_collection.html">test_collection</tocitem>
+   <tocitem target="testing_protocol.html">testing_protocol</tocitem>
+   <tocitem target="train_ensemble.html">train_ensemble</tocitem>
+   <tocitem target="update_alarm_excel.html">update_alarm_excel</tocitem>
+   <tocitem target="update_label_table.html">update_label_table</tocitem>
+   <tocitem target="weekratio.html">weekratio</tocitem>
+   <tocitem target="weekratio2weektime.html">weekratio2weektime</tocitem>
+   <tocitem target="Welcome_to_waste_code.html">Welcome_to_waste_code</tocitem>
+   <tocitem target="testing_results_collection.html" image="$toolbox/matlab/icons/book_mat.gif">testing_results_collection
+      <tocitem target="demo_plot_results.html">demo_plot_results</tocitem>
+   </tocitem>
+</tocitem>
+
+</toc>

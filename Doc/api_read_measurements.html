@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of api_read_measurements</title>
+<meta name="keywords" content="api_read_measurements">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>api_read_measurements </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc">API_READ_MEASUREMENTS Načte měření zaplnění kontejneru z Golemio API.
+
+   [Time, p, measurements] = API_READ_MEASUREMENTS(ksnko_id, apiKey)
+   načte data o zaplnění kontejneru z Golemio Smart City API.
+   Funkce dotazuje endpoint:
+
+       https://api.golemio.cz/v2/sortedwastestations/measurements
+
+   VSTUPY:
+       ksnko_id : Číselný identifikátor kontejneru v systému Golemio.
+       apiKey   : API klíč (token), který musí být předán v HTTP hlavičce.
+
+   VÝSTUPY:
+       Time         : Pole typu datetime (UTC). Obsahuje časová razítka
+                      jednotlivých měření (pole 'measured_at_utc').
+
+       p            : Číselné pole hodnot zaplněnosti (percent_calculated) pro každé měření.
+
+       measurements : Struktura (nebo pole struktur) obsahující kompletní
+                      nezaformátovanou odpověď API vrácenou funkcí WEBREAD.
+
+   POZNÁMKY:
+       • V případě chyby připojení, timeoutu nebo chyby API funkce vrací
+         prázdné výstupy: Time = [], p = [], measurements = [].
+       • Funkce používá 30sekundový timeout a předává API klíč v hlavičce
+         'X-Access-Token'.
+
+   PŘÍKLAD:
+       ksnko_id = 12345;
+       apiKey   = 'VAŠE_GOLEMIO_API_KEY';
+       [T, P, data] = api_read_measurements(ksnko_id, apiKey);
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

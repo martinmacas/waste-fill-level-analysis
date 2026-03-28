@@ -1,0 +1,57 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of mean_weekly_profile</title>
+<meta name="keywords" content="mean_weekly_profile">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>mean_weekly_profile </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc">MEAN_WEEKLY_PROFILE Vypočítá průměrný, směrodatný rozptyl a počet vzorků pro
+ každý den v týdnu a každou hodinu dne z časové řady zaplnění.
+
+   [Mmean, Mstd, Mn] = MEAN_WEEKLY_PROFILE(Time, p)
+
+   Funkce analyzuje časovou řadu zaplnění nádoby p s časovými značkami Time
+   a vypočítá statistiky rozdělené podle dne v týdnu (1 = neděle, 7 = sobota)
+   a hodiny dne (0-23).
+
+   Vstupní parametry:
+       Time - datetime (Nx1), časové značky jednotlivých vzorků signálu
+       p    - double (Nx1), hodnoty signálu zaplnění nádoby
+
+   Výstupní parametry:
+       Mmean - double (7x24), průměrné hodnoty signálu pro každý den v týdnu a
+               každou hodinu
+       Mstd  - double (7x24), směrodatná odchylka signálu pro každý den v týdnu
+               a každou hodinu
+       Mn    - double (7x24), počet vzorků použité pro výpočet průměru a směrodatné
+               odchylky v daném dni a hodině
+
+   Popis:
+       - Funkce rozdělí data do 7 dnů v týdnu a 24 hodin dne.
+       - Pro každou kombinaci dne a hodiny spočítá počet vzorků, průměr a
+         směrodatnou odchylku hodnot p.
+
+   Příklad použití:
+       Time = datetime(2023,1,1,0,0,0) + hours(0:1000);
+       p = rand(1001,1)*100; % simulovaný signál zaplnění
+       [Mmean, Mstd, Mn] = mean_weekly_profile(Time, p);
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

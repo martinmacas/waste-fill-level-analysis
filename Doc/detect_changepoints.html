@@ -1,0 +1,91 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of detect_changepoints</title>
+<meta name="keywords" content="detect_changepoints">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>detect_changepoints </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc">DETECT_CHANGEPOINTS Detekuje body změn v časové řadě dat na základě detekovaných svozů.
+
+   [schedules, ind_start, ind_end, centers, OPERATES, c] = detect_changepoints(Time, p, c)
+   spustí detekci s výchozími volitelnými parametry.
+
+   [schedules, ind_start, ind_end, centers, OPERATES, c] = detect_changepoints(Time, p, c, 'ParamName', ParamValue, ...)
+   umožňuje přepsat volitelné parametry.
+
+   Vstupní parametry:
+       Time    - datetime, časová informace signálu (vektor Nx1)
+       p       - double, vzorky stavu zaplnění odpadové nádoby v procentech (vektor Nx1)
+       c       - indikátory detekovaných svozů (vektor nebo matice)
+
+   Volitelné parametry (výchozí hodnoty):
+       'toler'         - tolerance v čase, výchozí 9 hodin
+       'timetol'       - časová tolerance, výchozí 16 hodin
+       'countappear'   - minimální počet výskytů, výchozí 4
+       'timeappear'    - čas pro potvrzení výskytu, výchozí 35 hodin
+       'timedisappear' - čas pro potvrzení zmizení, výchozí 30 dní
+       'nantoler'      - minimální mezery v časovém signálu, aby byla považována za výpadek, výchozí 10 hodin
+
+   Výstupní parametry:
+       schedules   - struktura/plán změn v datech
+       ind_start   - indexy začátků stabilních intervalů
+       ind_end     - indexy konců stabilních intervalů
+       centers     - střední body detekovaných změn
+       OPERATES    - informace o provozu (např. aktivita)
+       c           - aktualizované indikátory kolekcí
+
+Detekované svozy lze získat například prahováním pomocí
+detect_collections_thresholding.m nebo jiným detektorem svozů.
+Funkce si v paměti udržuje seznam potencionálních kandidátů na časy plánovaných svozů (ve
+formě seznamu weekratio čísel (viz. weekratio.m).
+Funkce sekvenčně prohledává detekované svozy a počítá vzdálenost daného 
+potenciálního svozu od nejbližšího plánovaného svozu.  
+
+- Pokud je vzdálenost od nejbližšího kandidáta větší než parametr "toler", vytvoří
+nový kandidát na čas plánovaných svozů, jinak se danému kandidátu zvýší jeho počet výskytů o 1
+
+- Potvrzený a aktivní kandidát, který se neobjevil déle než
+"timedisappear" dní, je označen za neaktivního. Do této doby nejsou počítány časy velkých
+mezer (výpadků) delších než "nantoler" hodin.
+
+- Neaktivní kandidát, který se objeví více než "countappear" krát v méně
+ než "timeappear" dnech, je nastaven jako potvrzený a aktivní
+
+- Zatím nepotvrzený kandidát, který se neobjeví po dobu "timetol" hodin je úplně odstraněn.
+
+Poté jsou nastaveny indexy začátků stabilních period jako indexy, kde 
+došlo ke změně některého kandidáta ze stavu neaktivní na aktivní.
+Indexy konů stabilních period jsou v tuhle chvíli vždy nastaveny jako
+index o jedna menší než je index následujícího začátku tak, aby každý vzorek signálu patřil
+do některého stabilního intervalu (i když je takový interval velmi
+krátký).</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="weekratio.html" class="code" title="Go To Function">weekratio</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

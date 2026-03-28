@@ -1,0 +1,93 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of estimate_disposal</title>
+<meta name="keywords" content="estimate_disposal">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>estimate_disposal </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc"> ESTIMATE_DISPOSAL  Výpočet odhadu množství uloženého odpadu mezi časovými značkami.
+ 
+    TT = ESTIMATE_DISPOSAL(TT, cdetected)
+    
+    doplní do tabulky TT nový sloupec dp, který představuje odhad množství 
+    odpadu uloženého (nebo potenciálně uloženého) mezi dvěma po sobě jdoucími 
+    časovými okamžiky TT.Time. Hodnota dp se využívá při simulaci průběhu 
+    zaplnění nádoby a výpočtu ztrátových funkcí pro optimalizaci svozových rozvrhů.
+ 
+    Výpočet dp vychází z diferenci signálu zaplnění TT.p, přičemž jsou 
+    odstraněny nežádoucí artefakty jako náhlé výkyvy způsobené anomáliemi 
+    nebo svozy, které by zkreslovaly odhad. Pro tyto části jsou hodnoty dp 
+    nastaveny na NaN a následně doplněny pomocí interpolace mediánem hodnot 
+    odpovídajících stejné hodině a dni v týdnu.
+ 
+    Vstupní parametry:
+        TT          - timetable (NxM)
+                      Tabulka obsahující alespoň sloupec:
+                          • p : double (Nx1), úroveň zaplnění nádoby v procentech
+                          • Time : datetime (Nx1), časové značky datových vzorků
+                      
+        cdetected   - logical/double (Nx1)
+                      Indikátory detekovaných svozů (např. binární vektor),
+                      kde 1 značí přítomnost svozu.
+ 
+    Výstupní parametry:
+        TT          - timetable (NxM+1)
+                      Rozšířená tabulka TT se sloupcem dp, kde
+                      dp(i) je odhad přírůstku odpadu mezi TT.Time(i-1) a TT.Time(i).
+                      První hodnota dp je NaN, protože pro první záznam není
+                      rozdíl definován.
+ 
+    Popis algoritmu:
+        • Vypočte se diferenciální přírůstek dp = diff(TT.p).
+        • Detekují se „peaky" signálu zaplnění pomocí heuristické detekce
+          anomálií (funkce anomaly_detection_heuristic.m nebo anomaly_detection_heuristic_bsklo.m). Okolí vrcholů 
+          je označeno jako neznámé (NaN) v dp, aby se eliminovaly falešné skoky.
+        • Hodnoty dp v okamžicích svozů jsou nastaveny na NaN, aby se svoz 
+          nepočítal jako negativní přírůstek odpadu.
+        • Dále jsou NaN nastaveny tam, kde je nádoba plná (p = 100 %) nebo tam,
+          kde klesá příliš rychle, což značí nevalidní změny.
+        • Chybějící hodnoty dp (NaNy) jsou následně interpolovány mediánem 
+          hodnot dp ze stejné hodiny a dne v týdnu, což zajistí konzistentní 
+          odhad odpadu i v nepřesných úsecích signálu.
+        • Upravený vektor dp je přidán do tabulky TT jako nový sloupec.
+ 
+    Poznámky:
+        • Funkce je klíčová pro simulace zaplnění kontejnerů v rámci optimalizace 
+          svozových rozvrhů, kdy je třeba věrně modelovat ukládání odpadu mezi svozy.
+        • Kvalita odhadu závisí na kvalitě a frekvenci původních dat TT.p a přesnosti
+          detekce svozů cdetected.
+        • Funkce využívá pomocnou heuristickou funkci anomaly_detection_heuristic_bsklo 
+          pro identifikaci nevalidních skoků v datech.
+ </pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="anomaly_detection_heuristic.html" class="code" title="Go To Function">anomaly_detection_heuristic</a></li>
+
+<li><a href="anomaly_detection_heuristic_bsklo.html" class="code" title="Go To Function">anomaly_detection_heuristic_bsklo</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

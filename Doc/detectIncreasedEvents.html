@@ -1,0 +1,89 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of detectIncreasedEvents</title>
+<meta name="keywords" content="detectIncreasedEvents">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>detectIncreasedEvents </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc"> DETECTINCREASEDEVENTS Detekuje zvýšený výskyt označených událostí
+   pomocí časově klouzavých oken (per-label window sizes) a vrátí
+   tabulku detekovaných intervalů.
+
+ Popis (co funkce dělá):
+   Funkce pro každý nenulový štítek (label) prohledává časovou osu pomocí
+   „předchozích“ (previous) a „aktuálních“ (current) oken definovaných v
+   dnech. Pro každé možné umístění předchozího okna spočítá průměrný
+   počet výskytů v předchozích datech (avgPrev) a počet výskytů v následujícím
+   aktuálním okně (currCount). V kódu je aktivní jednoduché pravidlo
+   spuštění detekce: jestliže currCount splňuje podmínku minimálního počtu
+   (`currCount >= minCount(lbl)`), vytvoří se interval. Funkce dále
+   slučuje překrývající se intervaly se stejným štítkem (rozšíří jejich
+   `finishIdx`/`finishTime`) a výsledkem je tabulka s informacemi o
+   detekovaných intervalech.
+
+   Dále režim krokování (prevStarts) je prováděn od konce dat směrem k začátku
+   (descendentní krokování), což zajišťuje detekci novějších událostí
+   dříve.
+
+ Požadavky na vstupy:
+   - Time a ypred musí mít stejný počet prvků; budou převedeny na sloupcové vektory.
+
+ Vstupní parametry:
+   Time         - datetime vektor (N x 1 nebo 1 x N), časové značky vzorků.
+   ypred        - celočíselný vektor štítků (stejná délka jako Time):
+                  0 = žádná událost, >0 = ID události/štítku.
+   wlenDays     - vektor nebo skalár: délka **aktuálního** okna v dnech pro
+                  každý štítek (pokud je skalár, musí být délka >= počet štítků).
+   wlenPrevDays - vektor nebo skalár: délka **předchozího** okna v dnech pro
+                  každý štítek.
+   stepDays     - skalár: krok klouzavého okna ve dnech (jak moc se posouváme).
+   threshold    - (není v aktuální verzi kódu použit pro spuštění) prahový poměr
+                  currCount > threshold * avgPrev (zůstal v signatuře pro
+                  kompatibilitu, ale aktuální implementace testuje minCount).
+   minCount     - vektor minimálních absolutních hodnot currCount pro každý
+                  štítek; lze dodat scalár (v tom případě se rozšíří na všechny štítky).
+
+ Poznámky k logice:
+   - Pokud je `maxPrevStart < 0` (data příliš krátká pro zvolené okna), pro
+     daný štítek se nic nedetekuje.
+   - `prevStarts` jsou generovány s krokem `stepDays` včetně posledního kroku,
+     ale v kódu jsou iterovány od konce k začátku (sort(maxPrevStart:-stepDays:0)).
+   - `avgPrev` je odhad průměrného počtu událostí v předchozích oknech:
+         avgPrev = prevCount * wlen_i / (timeDays(prevIdx(end)) - timeDays(prevIdx(1)))
+     (pozn.: jde o normalizaci podle délky skutečných dat v předchozím okně).
+   - Detekce vytvoří `interval` pouze když `currEnd` leží v rámci dostupných dat
+     a zároveň `currCount >= minCount(lbl)`. (Test s `threshold` je v kódu
+     zakomentovaný.)
+   - Překrývající se intervaly se stejným štítkem se slučují (aktualizuje se finish).
+
+ Výstup (tabulka):
+   detectedIntervals - table s následujícími sloupci:
+       'label'      - číselné ID štítku (double)
+       'labelname'  - textový název štítku (char / cellstr)
+       'startIdx'   - index prvního výskytu štítku v rámci detekovaného intervalu
+       'startTime'  - datetime prvního výskytu intervalu
+       'finishIdx'  - index posledního výskytu štítku v rámci intervalu
+       'finishTime' - datetime posledního výskytu intervalu
+       'avgPrev'    - odhad průměrného počtu v předchozích oknech (double)
+       'currCount'  - aktuální počet výskytů v okně (double)  % tento sloupec je 8.
+
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

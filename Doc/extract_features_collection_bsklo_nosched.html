@@ -1,0 +1,46 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of extract_features_collection_bsklo_nosched</title>
+<meta name="keywords" content="extract_features_collection_bsklo_nosched">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>extract_features_collection_bsklo_nosched </h1> <hr class="btw">
+<!-- START Zjistil jsem, ze mediany jsou asi k nicemu, zkusim pridat opravdu derivace / important comment -->
+<h2><a name="_description"></a>Zjistil jsem, ze mediany jsou asi k nicemu, zkusim pridat opravdu derivace <a href="#_top"></a></h2><hr  class="btw">
+<div class="fragment"><pre class="text"> X = [diff(p(repmat(indc,1,3)+(-1:1)),[],2)./hours(diff(Time(repmat(indc,1,3)+(-1:1)),[],2)), ...%derivace
+      diff(p(repmat(indc,1,3)+(-1:1)),[],2), ...%abs diference
+      p(repmat(indc,1,2)+(0:1)) ...%aktualni a dalsi hodnota p
+      abs(hour(Time(indc))+minute(Time(indc))/60-12) ...%vzdalenost od poledne
+      diff(p(repmat(indc,1,2)+(0:1)),[],2)./p(indc) ...%relativni diference
+      hours(diff(Time(repmat(indc,1,2)+(0:1)),[],2))...
+ ];
+ xnames = {'deriv-1','deriv0','diff-1','diff0','p0','p+1','noon_dist','diff0/p0','diffTime'};</pres></div>
+<!-- END Zjistil jsem, ze mediany jsou asi k nicemu, zkusim pridat opravdu derivace / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="extract_features_collection_bsklo.html" class="code" title="Go To Function">extract_features_collection_bsklo</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

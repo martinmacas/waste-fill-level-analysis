@@ -1,0 +1,86 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of detect_collections_supervised_bsklo</title>
+<meta name="keywords" content="detect_collections_supervised_bsklo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>detect_collections_supervised_bsklo </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc"> DETECT_COLLECTIONS_SUPERVISED_BSKLO detekuje svozy odpadu pro barevné sklo a pomalu se plnící nádoby pomocí klasifikačního modelu. 
+
+   [c, scores, threshold, afterpicklevel] = DETECT_COLLECTIONS_SUPERVISED_BSKLO(Time, p, threshold, schedule)
+   
+   Jedná se o detekci svozů pomocí klasifikačního modelu. Naučený a optimalizovaný model spolu s prahem pro score je uložen 
+   v souboru model_collection_supervised.mat. Model musí být naučen pomocí
+   Statistical and Machine Learning toolboxu. Příkladem vhodného modelu je model naučený pomocí 
+   Mdl = fitcensemble(X,y,'OptimizeHyperparameters','auto'); Kód pro učení
+   modelu je v demo_train_collection_supervised.m a
+   demo_train_collection_supervised_2.m.
+   
+   Vstupní parametr schedule může být získán z externího zdroje
+   (předepsaný rozvrh svozů) anebo detekován pomocí detect_changepoints.m.
+   Předpokládaný rozvrh svozů může podstatně zvýšit přesnost detekce
+   svozů, protože model může jako příznak využít vzdálenost od předpokládaného
+   svozu.
+
+   Práh lze dodat externě pomocí parametru threshold nebo načíst předem optimalizovaný práh ze souboru
+   (Nastavením threshold na []). Model uložený  v model_collection_supervised.mat je naučený na datech
+   pro papír, ale může být přepoužit pro jiné rychle se plnící kontejnery. 
+   
+   Pozn. Pokud bude vytvořen model pro danou komoditu zvlášť je
+   nutné vytvořit kopii této funkce (např. detect_collections_plastics) a
+   unvitř změnit název souboru s příslušným modelem dedikovaným dané komoditě.
+   
+   Vstupní parametry:
+       Time            - datetime, časová informace signálu (vektor Nx1)
+       p               - double, vzorky stavu zaplnění odpadové nádoby v procentech (vektor Nx1)
+       threshold       - práh (pokud se nastaví na [], je jeho hodnota přečtena ze souboru model_collection_thresholding.mat) 
+       schedule        - rozvrh svozů, v tuhle chvíli není u prahování použit, lze nastavit jakkoliv 
+
+   Výstupní parametry:
+       c               - indikátory detekovaných svozů (vektor Nx1)
+       scores          - predikční skóre (vektor Nx1)                - 
+       threshold       - skutečně použitý práh (double)
+       afterpicklevel  - hodnoty zaplněnosti těsně po každém detekovaném svozu (vektor mx1),
+                         kde m je počet detekovaných svozů  
+
+   Příklad použití:
+       [c, scores, th, apl] = detect_collections_thresholding(Time, p, 0.2, schedule);
+       [c, scores, th, apl] = detect_collections_thresholding(Time_all,p_all,[]);
+
+
+   Podobná funkce: detect_collections_thresholding.m, detect_collections_sueprvised.m 
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="detect_collections_supervised.html" class="code" title="Go To Function">detect_collections_supervised</a></li>
+
+<li><a href="extract_features_collection_bsklo.html" class="code" title="Go To Function">extract_features_collection_bsklo</a></li>
+
+<li><a href="extract_features_collection_bsklo_nosched.html" class="code" title="Go To Function">extract_features_collection_bsklo_nosched</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

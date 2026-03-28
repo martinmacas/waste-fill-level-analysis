@@ -1,0 +1,91 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of detect_missing_collection_periodical</title>
+<meta name="keywords" content="detect_missing_collection_periodical">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>detect_missing_collection_periodical </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc">DETECT_MISSING_COLLECTION Detekuje chybějící svozy na základě časové řady
+zaplnění nádoby a předpokládaného rozvrhu svozů pro nádoby s periodickým
+rozvrhem svozů (sklo a pomalu se plnící nádoby)
+
+   [ind_missing, Time_missing, Time_scheduled] = DETECT_MISSING_COLLECTION_PERIODICAL(Time, p, c, schedule, tolerance)
+
+   Funkce porovnává detekované svozy (indikátory c) s očekávaným
+   rozvrhem svozů (schedule) a identifikuje případy, kdy svoz podle
+   rozvrhu měl nastat, ale ve skutečnosti nebyl detekován.
+
+--------------------------------------------------------------------------
+   Vstupní parametry:
+
+       Time            - datetime (Nx1)
+                         Časová informace signálu.
+
+       p               - double (Nx1)
+                         Vzorky stavu zaplnění odpadové nádoby v procentech.
+
+       c               - double/logical (Nx1)
+                         Indikátory detekovaných svozů.
+                         Typicky binární vektor, kde 1 označuje detekovaný svoz.
+
+       schedule        - double (1x3) ve formě [p d h], kde p je perioda opakování svozů v týdnech,
+                         d je den v týdnu a h je hodina ve dne
+                       - Očekávané (naplánované) časy v týdnu pro jednotlivé svozy
+                         
+
+       tolerance       - double (např. 48)
+                         Povolená časová tolerance v hodinách mezi plánovaným a
+                         detekovaným svozem. Pokud v okolí plánovaného
+                         času není nalezen detekovaný svoz, považuje se plánovaný svoz za chybějící.
+                         U pomalu se plnících nádob by tolerance měla být
+                         vyšší (dny-týden)
+
+--------------------------------------------------------------------------
+   Výstupní parametry:
+
+       ind_missing     - double (Kx1)
+                         Indexy chybějících svozů (plánovaných svozů pro něž ve stanovené toleranci nebyl detekován svoz).
+                         K je počet chybějících svozů.
+
+       Time_missing    - datetime (Kx1)
+                         Časy chybějících svozů.
+
+       Time_scheduled  - datetime (Qx1)
+                         Seznam časů plánovaných svozů vypočtený z rozvrhu "schedule"
+                         
+--------------------------------------------------------------------------
+   Příklad:
+      
+       [ind_missing, Time_missing, Time_scheduled] = ...
+           detect_missing_collection(Time, p, c, schedule, 48);
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="detect_missing_collection.html" class="code" title="Go To Function">detect_missing_collection</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

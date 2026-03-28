@@ -1,0 +1,159 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of analyse_signal_bsklo</title>
+<meta name="keywords" content="analyse_signal_bsklo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>analyse_signal_bsklo </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc"> ANALYSE_SIGNAL_BSKLO Analyzuje signál zaplnění odpadových nádob na sklo a pomalu se plnících nádob.
+
+   [ypred, cpred, analysis, schedules, alarms] = analyse_signal_bsklo(Time_all, p_all)
+
+   Funkce provádí detekci anomálií v signálu zaplnění, detekci svozů pomocí
+   speciálního klasifikátoru pro pomalu plnící se nádoby na sklo a
+   rozděluje signál do intervalů s periodickými, stabilními svozovými rozvrhy.
+   Pro každý takový interval provádí detailní analýzu včetně detekce chybějících svozů a generování alarmů.
+
+ Vstupní parametry:
+   Time_all   - datetime (Nx1), časové značky vzorků signálu zaplnění
+   p_all      - double (Nx1), hodnoty zaplnění nádob v procentech
+
+ Výstupní parametry:
+   ypred      - double (Nx1), predikce kategorií anomálií pro každý časový vzorek
+   cpred      - logical (Nx1), detekované svozy odpadu (1 = svoz detekován)
+   analysis   - struct (1 x počet intervalů), podrobná analýza pro každý stabilní interval svozového rozvrhu,
+                obsahuje informace o svozech, chybějících svozech, statistiky signálu a alarmy
+   schedules  - cell array, periodické svozové rozvrhy přiřazené ke každému analyzovanému intervalu
+   alarms     - struktura, souhrn detekovaných alarmů ze všech intervalů
+
+ Popis:
+   1) Provede detekci anomálií pomocí heuristiky přizpůsobené pomalu plnícím nádobám na sklo (<a href="anomaly_detection_heuristic_bsklo.html">anomaly_detection_heuristic_bsklo</a>).
+   2) Detekuje svozy pomocí klasifikátoru bez využití vzdálenosti od
+      očekávaného času svozu (<a
+      href="detect_collections_supervised_bsklo.html">detect_collections_supervised_bsklo</a>),
+      což je vhodné pro detekci změn ve svozovém rozvrhu. 
+   3) Rozdělí časovou řadu do intervalů s periodickým stabilním svozovým rozvrhem (<a href="detect_changepoints_periodical.html">detect_changepoints_periodical</a>).
+   4) V každém intervalu aktualizuje svozy pomocí klasifikátoru s využitím očekávaných časů svozů (<a href="detect_collections_supervised_bsklo.html">detect_collections_supervised_bsklo</a>).
+   5) Pro každý interval vyhodnotí svozy a chybějící svozy (<a href="detect_missing_collection_periodical.html">detect_missing_collection_periodical</a>), a vytvoří sadu alarmů pro zvýšené události (<a href="detectIncreasedEvents.html">detectIncreasedEvents</a>).
+   6) Výstupní struktury slouží pro další analýzu a nebo pro optimalizaci svozových plánů.
+
+ Poznámka:
+   Funkce využívá podpůrné funkce: anomaly_detection_heuristic_bsklo, detect_collections_supervised_bsklo,
+   detect_changepoints_periodical, detect_missing_collection_periodical, detectIncreasedEvents, expected_collection_times.
+
+ Příklad použití:
+   [ypred, cpred, analysis, schedules, alarms] = analyse_signal_bsklo(Time_data, fill_levels);
+
+ Význam položek analysis(i):
+
+   period           - (integer) pořadové číslo analyzovaného intervalu v rámci celé časové řady
+
+   ind_start        - (integer) index začátku intervalu ve vstupních datech
+
+   ind_end          - (integer) index konce intervalu ve vstupních datech
+
+   time_start       - (datetime) časový údaj začátku intervalu
+
+   time_end         - (datetime) časový údaj konce intervalu
+
+   days             - (double) délka intervalu v dnech
+
+   samples          - (integer) počet vzorků (datových bodů) v intervalu
+
+   collection_mode  - (char) režim svozu, v této funkci je hodnota 'periodical'
+
+   meanlevel_before - (double) průměrná úroveň zaplnění nádoby těsně před svozy v daném intervalu (v %)
+
+   meanlevel_after  - (double) průměrná úroveň zaplnění nádoby těsně po svozech v daném intervalu (v %)
+
+   level_after      - (double array) hodnoty zaplnění ihned po jednotlivých svozech v intervalu
+
+   lostsig_ratio    - (double) podíl „ztracených“ datových vzorků (dlouhých mezer v měření) vůči délce intervalu (v %)
+
+   longenough       - (logical) příznak, zda je interval dostatečně dlouhý pro analýzu (true/false)
+
+   num_collections  - (integer) počet detekovaných svozů odpadu v intervalu
+
+   schedule         - (double array) periodický svozový rozvrh [perioda (týdny), den v týdnu, hodina]
+
+   Time_scheduled   - (datetime array) plánované časy svozů podle aktuálního rozvrhu v intervalu
+
+   misscoll_num     - (integer) počet chybějících svozů (svoz, který se měl uskutečnit, ale nebyl detekován)
+
+   misscoll_ratio   - (double) procentuální podíl chybějících svozů vzhledem k plánovaným svozům v intervalu (%)
+
+   num_scheduled    - (integer) počet naplánovaných svozů v intervalu podle rozvrhu
+
+   counts           - (integer array) histogram počtu různých typů detekovaných anomálií (kategorie 1 až 9)
+
+   countsw          - (double array) vážený histogram anomálií přepočítaný na počet událostí za týden
+
+   alesscurr        - (empty) rezervní pole pro neoptimalizované nevyužité kapacity (pro budoucí využití)
+
+   alessopt         - (empty) rezervní pole pro optimalizované nevyužité kapacity (pro budoucí využití)
+
+   amorecurr        - (empty) rezervní pole pro neoptimalizované přetečení (pro budoucí využití)
+
+   amoreopt         - (empty) rezervní pole pro optimalizované přetečení (pro budoucí využití)
+
+   alarms           - (table) tabulka detekovaných alarmů zvýšeného výskytu událostí v analyzovaném intervalu,
+                      obsahuje tyto sloupce:
+                      - label       : číselný kód typu alarmu
+                      - labelname   : textový popis typu alarmu (např. 'Peaky', 'Propady')
+                      - startIdx    : index začátku alarmovaného období v datech
+                      - startTime   : časový údaj začátku alarmovaného období (datetime)
+                      - finishIdx   : index konce alarmovaného období v datech
+                      - finishTime  : časový údaj konce alarmovaného období (datetime)
+                      - avgPrev     : průměrná hodnota (např. předchozího období) použitá k vyhodnocení alarmu
+                      - currCount   : aktuální počet nebo intenzita detekované zvýšené události
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="analyse_signal.html" class="code" title="Go To Function">analyse_signal</a></li>
+
+<li><a href="anomaly_detection_heuristic.html" class="code" title="Go To Function">anomaly_detection_heuristic</a></li>
+
+<li><a href="anomaly_detection_heuristic_bsklo.html" class="code" title="Go To Function">anomaly_detection_heuristic_bsklo</a></li>
+
+<li><a href="detectIncreasedEvents.html" class="code" title="Go To Function">detectIncreasedEvents</a></li>
+
+<li><a href="detect_changepoints.html" class="code" title="Go To Function">detect_changepoints</a></li>
+
+<li><a href="detect_changepoints_periodical.html" class="code" title="Go To Function">detect_changepoints_periodical</a></li>
+
+<li><a href="detect_collections_supervised.html" class="code" title="Go To Function">detect_collections_supervised</a></li>
+
+<li><a href="detect_collections_supervised_bsklo.html" class="code" title="Go To Function">detect_collections_supervised_bsklo</a></li>
+
+<li><a href="detect_missing_collection.html" class="code" title="Go To Function">detect_missing_collection</a></li>
+
+<li><a href="detect_missing_collection_periodical.html" class="code" title="Go To Function">detect_missing_collection_periodical</a></li>
+
+<li><a href="expected_collection_times.html" class="code" title="Go To Function">expected_collection_times</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

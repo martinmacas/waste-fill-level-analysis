@@ -1,0 +1,48 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of extract_features_collection_bsklo</title>
+<meta name="keywords" content="extract_features_collection_bsklo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>extract_features_collection_bsklo </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc"> EXTRACT_FEATURES_COLLECTION_BSKLO Extrahuje příznaky pro detekci svozu nádoby
+ na barevné sklo nebo pomalu se plnících nádob.
+
+   [X, xnames] = EXTRACT_FEATURES_COLLECTION_BSKLO(p, Time, schedule, indc)
+   provede extrakci příznaků na základě signálu zaplnění, časových údajů
+   a indexů indc míst, v kterých chceme extrahovat příznaky. Pro detekci svozů 
+   bude indc patrně obsahovat všechny indexy svozů (pozitivní příklady) a 
+   indexy míst, která chci odlišit od svozů (negativní příklady, třeba
+   všechna místa, kde dochází k poklesu a nejsou to svozy.
+
+   Vstupní parametry:
+       Time            - časová informace signálu (datetime, vektor Nx1)
+       p               - vzorky stavu zaplnění odpadové nádoby v procentech (double, vektor Nx1)
+       schedule        - rozvrh svozů
+       indc            - indexy událostí,pro které chci extrahovat
+                         příznaky (např. svozy a nesvozy) (double, vektor 1xn)
+
+   Výstupní parametry:
+       X               - matice s hodnotami příznaků v každém řádku (n × m double)
+       xnames          - názvy příznaků (1 × m cell array of char/string)
+
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

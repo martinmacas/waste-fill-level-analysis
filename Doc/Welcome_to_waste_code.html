@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB 2021b"><title>Dokumentace kódu pro EDIH Odpady</title><style type="text/css">.rtcContent { padding: 30px; } .S0 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 28.8px; min-height: 0px; white-space: pre-wrap; color: rgb(213, 80, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 24px; font-weight: 400; text-align: left;  }
+.S1 { margin: 2px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
+.S2 { margin: 20px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
+.S3 { margin: 10px 0px 20px; padding-left: 0px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;  }
+.S4 { margin-left: 56px; line-height: 21px; min-height: 0px; text-align: left; white-space: pre-wrap;  }</style></head><body><div class = rtcContent><h1  class = 'S0'><span>Dokumentace kódu pro EDIH Odpady</span></h1><div  class = 'S1'><span>Tento dokument popisuje hlavní postup jakým použít MATLAB kód pro s časovými řadami zaplnění odpadových nádob. </span></div><div  class = 'S1'><span style=' font-weight: bold;'>Autor:</span><span>* Martin</span><span> Macaš </span><span style=' font-weight: bold;'>Datum:</span><span>* 2025-12-09</span><span> </span><span style=' font-weight: bold;'>Verze:</span><span> 1.0</span></div><h2  class = 'S2'><span>Základní workflow:</span></h2><div  class = 'S1'><span></span></div><div  class = 'S1'><span>Hlavní kroky využití kódu jsou:</span></div><ol  class = 'S3'><li  class = 'S4'><span style=' font-weight: bold;'>Načtení dat z API</span><span> pomocí funkce </span><a href = "./api_read_measurements.html"><span>api_read_measurements</span></a><span>.</span></li><li  class = 'S4'><span style=' font-weight: bold;'>Analýza signálu</span><span> dle typu odpadu: </span><a href = "./analyse_signal.html"><span>analyse_signal</span></a><span> pro papír, plast a rychle se plnící nádoby nebo </span><a href = "./analyse_signal_bsklo.html"><span>analyse_signal_bsklo</span></a><span> pro sklo a pomalu se plnící nádoby. </span></li><li  class = 'S4'><span style=' font-weight: bold;'>Optimalizace svozů</span><span> funkcemi pomocí </span><a href = "./optimize_collections_constraints.html"><span>optimize_collections_constraints</span></a><span> pro rychle se plnící nádoby a </span><a href = "./optimize_collections_periodical.html"><span>optimize_collections_periodical</span></a><span> pro pomalu se plnící nádoby.</span></li></ol><h2  class = 'S2'></h2>
+<br>
+<!-- 
+##### SOURCE BEGIN #####
+%% Dokumentace kódu pro EDIH Odpady
+% Tento dokument popisuje hlavní postup jakým použít MATLAB kód pro s časovými 
+% řadami zaplnění odpadových nádob. 
+% 
+% *Autor:** Martin Macaš *Datum:** 2025-12-09 *Verze:* 1.0
+%% Základní workflow:
+% 
+% 
+% Hlavní kroky využití kódu jsou:
+%% 
+% # *Načtení dat z API* pomocí funkce <./api_read_measurements.html api_read_measurements>.
+% # *Analýza signálu* dle typu odpadu: <./analyse_signal.html analyse_signal> 
+% pro papír, plast a rychle se plnící nádoby nebo <./analyse_signal_bsklo.html 
+% analyse_signal_bsklo> pro sklo a pomalu se plnící nádoby. 
+% # *Optimalizace svozů* funkcemi pomocí <./optimize_collections_constraints.html 
+% optimize_collections_constraints> pro rychle se plnící nádoby a <./optimize_collections_periodical.html 
+% optimize_collections_periodical> pro pomalu se plnící nádoby.
+%%
+##### SOURCE END #####
+-->
+</div></body></html>

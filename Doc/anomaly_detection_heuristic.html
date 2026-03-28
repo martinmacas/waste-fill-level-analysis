@@ -1,0 +1,53 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of anomaly_detection_heuristic</title>
+<meta name="keywords" content="anomaly_detection_heuristic">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>anomaly_detection_heuristic </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc">ANOMALY_DETECTION_HEURISTIC  Detekce událostí v časové řadě stavu zaplnění nádob na papír či rychle se plnících nádob.
+
+   [ypred, score, forecast] = ANOMALY_DETECTION_HEURISTIC(Time, p)
+   provede heuristickou detekci anomálií na základě heuristických pravidel aplikovaných na signál zaplnění
+   odpadové nádoby. Funkce aplikuje heuristický algoritmus pro detekci
+   událostí v časové řadě zaplnění. 
+
+   Vstupní parametry:
+       Time        - datetime, časová informace signálu (vektor Nx1)
+       p           - double, vzorky stavu zaplnění odpadové nádoby
+                     v procentech (vektor Nx1)
+
+   Výstupní parametry:
+       ypred       - labely (označení) detekovaných anomálií (vektor Nx1)
+       score       - tento výstup u heuristická detekce není využit a je
+                     NaN, (skóre anomálnosti zde zatím nedává smysl)
+       forecast    - tento výstup u heuristická detekce není využit a je
+                     NaN (detekce nevyužívá žádnou odchylku od předpovědi či jiné reference)
+   
+   Význam labelů: 
+                   1 Odvoz nádoby - čištění
+                   2 Ucpaný vhoz
+                   4 Výpadek signálu
+                   6 Peak nahoru
+                   7 Sesuv
+                   9 Propad
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>

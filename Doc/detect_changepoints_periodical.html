@@ -1,0 +1,77 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Description of detect_changepoints_periodical</title>
+<meta name="keywords" content="detect_changepoints_periodical">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="m2docgen &copy 2021: Nils Boehnisch">
+<meta name="robots" content="index, follow">
+<link type="text/css" rel="stylesheet" href="ressources\m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+
+<div><a class = "image" href="Welcome_to_waste_code.html"><img border="0" src="ressources\logo.jpg"></a></div>
+<h1>detect_changepoints_periodical </h1> <hr class="btw">
+<!-- START SHORT_DESC / important comment -->
+<div><pre class="firstDesc">DETECT_CHANGEPOINTS_PERIODICAL Detekuje periodické intervaly svozů na základě časové řady.
+
+   [schedules, ind_start, ind_end] = detect_changepoints_periodical(Time, p, c)
+   spustí detekci periodických intervalů svozů s výchozími volitelnými parametry.
+
+   [schedules, ind_start, ind_end] = detect_changepoints_periodical(Time, p, c, 'ParamName', ParamValue, ...)
+   umožňuje upravit volitelné parametry pro zpřesnění detekce.
+
+   Popis funkce:
+       Funkce analyzuje časové rozdíly mezi detekovanými svozy (určenými pomocí
+       indikátorů vektoru c). Na základě podobnosti časových rozestupů hledá
+       periodické intervaly svozů i v případě, že se občas vyskytnou odchylky
+       nebo chybějící detekce. Pro každý nalezený interval odhaduje typickou
+       dobu mezi svozy, typický den v týdnu a typickou hodinu svozu.
+
+   Vstupní parametry:
+       Time        - datetime, časová informace signálu (vektor Nx1)
+       p           - double, vzorky stavu zaplnění nádoby (vektor Nx1)
+                     (není zde přímo využit, slouží pro kompatibilitu)
+       c           - logické nebo číselné indikátory detekovaných svozů (vektor Nx1)
+
+   Volitelné parametry (výchozí hodnoty):
+       'tol_period'   - tolerance v hodinách pro posouzení, kdy jsou dva
+                        intervaly svozu považovány za podobné (default = 24 h)
+
+       'tol_missing'  - kolik po sobě jdoucích intervalů může nesplnit podmínku
+                        podobnosti, aniž by byl periodický segment ukončen
+                        (default = 2)
+
+   Výstupní parametry:
+       schedules       - buňky, kde každý řádek popisuje jeden nalezený
+                         periodický segment:
+                           schedules{n,1}(1) = perioda (v násobcích týdne)
+                           schedules{n,1}(2) = detekovaný den v týdnu (1–7)
+                           schedules{n,1}(3) = detekovaná hodina svozu (0–23)
+
+       ind_start       - indexy prvních prvků jednotlivých segmentů v Time
+
+       ind_end         - indexy posledních prvků segmentů v Time
+</pre></div>
+<!-- END SHORT_DESC / important comment -->
+<!-- START TOTAL_CALL / important comment-->
+<h2><a name="_cross"></a>Function References<a href="#_top"></a></h2><hr class="btw">
+<!-- START NAME_CALL -->
+<pre class = "text">This function calls:</pre><ul>
+
+<li><a href="detect_changepoints.html" class="code" title="Go To Function">detect_changepoints</a></li>
+<!-- functRef above / important comment -->
+</ul>
+<!-- END NAME_CALL -->
+<!--{TOTAL_CALL} -->
+<!-- END TOTAL_CALL / important comment-->
+<!-- CONTENT_FROM_M2DOC -->
+<!-- the comment above and this one will be replaced by the actual content -->
+
+<hr class="last"> 
+<address>Generated on 10-Dec-2025 by <strong><a class = "image" href="Welcome_to_waste_code.html" title="Matlab Documentation">m2docgen</a></strong> &copy; 2025 </address>
+</body>
+</html>
