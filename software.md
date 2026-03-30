@@ -1,6 +1,6 @@
 Software
 
-Title of output (not the same as relevant publication/article): Waste Fill-Level Signal Analysis and Collection Detection Toolkit
+Title of output: Waste Collection Quality Monitoring from Fill-Level Sensors
 
 Registration number / Internal identifier: Waste Fill-Level Analysis
 
