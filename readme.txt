@@ -1,7 +1,7 @@
-# Waste Fill-Level Signal Analysis
+# Waste Collection Quality Monitoring from Fill-Level Sensors
 
 MATLAB toolkit for analyzing fill-level signals from sensors in public waste containers.
-
+Monitoring of waste management service quality from fill-level sensors in public waste containers
 ## Overview
 
 This project provides methods for automated analysis of fill-level sensor data from public waste containers. It enables detection of waste collection events, identification of signal anomalies, and inference of collection schedules.
